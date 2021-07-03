@@ -28,7 +28,23 @@ function Chat() {
             </div>
 
             <div className="chat__body">
+                <p className='chat__message'>
+                <span className='chat__name'>Daniel</span>    
+                    This is a message
                 
+                    <span className='chat__timestamp'>
+                    {new Date().toLocaleTimeString()}
+                    </span>
+                </p>
+
+                <p className='chat__message chat__receiver'>
+                <span className='chat__name'>Daniel</span>    
+                    This is a message
+                
+                    <span className='chat__timestamp'>
+                    {new Date().toLocaleTimeString()}
+                    </span>
+                </p>
             </div>
         </div>
     )
