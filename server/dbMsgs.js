@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 const whatsappSchema = mongoose.Schema({
     message: String,
     name: String,
-    timestamp: String
+    timestamp: String,
+    received: Boolean,
 });
 
-export default mongoose.model('msgContent', whatsappSchema)
+//collection
+export default mongoose.model('msgcontents', whatsappSchema)
