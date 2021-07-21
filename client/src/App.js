@@ -1,10 +1,21 @@
 import './App.css';
 import Sidebar from './component/Sidebar/Sidebar';
 import Chat from './component/Chat/Chat';
-import react, { useEffect } from 'react';
+import react, { useEffect, useState } from 'react';
 import Pusher from 'pusher-js';
+import axios from './axios';
 
 function App() {
+
+  const [msgs, setMsgs] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('/messages/sync')
+      .then(res => {
+        setMsgs(res.data);
+      })
+  }, []);
 
   useEffect(() => {
 
@@ -14,10 +25,18 @@ function App() {
 
     const channel = pusher.subscribe('msgs');
 
-    channel.bind('inserted', (data) => {
-      alert(JSON.stringify(data));
+    channel.bind('inserted', (newMsg) => {
+      setMsgs([...msgs, newMsg])
     });
-  }, [])
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
+
+  }, [msgs])
+
+  console.log(msgs);
 
   return (
     <div className="app">

@@ -37,6 +37,7 @@ db.once('open', () => {
                     name: msgDetails.name,
                     message: msgDetails.message,
                     timestamp: msgDetails.timestamp,
+                    received: msgDetails.received,
                 }
             );
         } else {
