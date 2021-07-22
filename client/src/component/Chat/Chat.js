@@ -9,8 +9,17 @@ import axios from '../../axios';
 function Chat({ msgs }) {
     const [input, setInput] = useState('');
 
-    const sendMsg = (e) => {
-        e.preventDefault()
+    const sendMsg = async (e) => {
+        e.preventDefault();
+
+        await axios.post('/messages/new', {
+            message: input,
+            name: "google id",
+            timestamp: "Just now",
+            received: true
+        });
+
+        setInput('');
     };
 
     return (
